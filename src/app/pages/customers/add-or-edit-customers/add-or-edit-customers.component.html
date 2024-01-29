@@ -23,10 +23,15 @@
     </div>
     <div nz-col nzSpan='12'>
       <span>სქესი</span>
-      <input nz-input style="width: 100%" formControlName="gender"
-             type="text"
-             placeholder="ჩაწერე"
+      <tb-select
+        formControlName="gender"
+        [data]="genders$"
+        id="gender"
+        displayMember="name"
+        valueMember="value"
       >
+      </tb-select>
+
     </div>
     <div nz-col nzSpan='12'>
       <span>პირადი ნომერი</span>
@@ -43,21 +48,23 @@
       >
     </div>
     <nz-divider></nz-divider>
-    <div nz-col nzSpan='12'>
+    <span>იურიდიული მისამართი</span>
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan='6'>
       <span>ქვეყანა</span>
       <input nz-input style="width: 100%" formControlName="legalCountry"
              type="text"
              placeholder="ჩაწერე"
       >
     </div>
-    <div nz-col nzSpan='12'>
+    <div nz-col nzSpan='6'>
       <span>ქალაქი</span>
       <input nz-input style="width: 100%" formControlName="legalCity"
              type="text"
              placeholder="ჩაწერე"
       >
     </div>
-    <div nz-col nzSpan='12'>
+    <div nz-col nzSpan='6'>
       <span>მისამართი</span>
       <input nz-input style="width: 100%" formControlName="legalAddress"
              type="text"
@@ -65,21 +72,23 @@
       >
     </div>
     <nz-divider></nz-divider>
-    <div nz-col nzSpan='12'>
+    <span>ფაქტიური მისამართი</span>
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan='6'>
       <span>ქვეყანა</span>
       <input nz-input style="width: 100%" formControlName="actualCountry"
              type="text"
              placeholder="ჩაწერე"
       >
     </div>
-    <div nz-col nzSpan='12'>
+    <div nz-col nzSpan='6'>
       <span>ქალაქი</span>
       <input nz-input style="width: 100%" formControlName="actualCity"
              type="text"
              placeholder="ჩაწერე"
       >
     </div>
-    <div nz-col nzSpan='12'>
+    <div nz-col nzSpan='6'>
       <span>მისამართი</span>
       <input nz-input style="width: 100%" formControlName="actualAddress"
              type="text"

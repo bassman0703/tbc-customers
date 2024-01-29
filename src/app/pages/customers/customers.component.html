@@ -2,25 +2,20 @@
 <!--<br/>-->
 <!--{{customers$ | async | json}}-->
 
-<!--<button (click)="paginationChange(2)">2</button>-->
-<!--<button (click)="paginationChange(3)">3</button>-->
-<!--<button (click)="paginationChange(4)">4</button>-->
-<!--<button (click)="paginationChange(5)">5</button>-->
+<button (click)="paginationChange(2)">2</button>
+<button (click)="paginationChange(3)">3</button>
+<button (click)="paginationChange(4)">4</button>
+<button (click)="paginationChange(5)">5</button>
 <app-header></app-header>
-  <ng-template #header>
-
-<!--    <button (click)="add()"  class="svg-icon"> დამატება</button>-->
-  </ng-template>
-<ng-template #footer>
+<button (click)="add()" >დამატება</button>
+<ng-template>
   <nz-pagination
-
+    [nzPageIndex]="page"
+    [nzTotal]="pageSize"
     (click)="paginationChange(page)"
   ></nz-pagination>
 </ng-template>
-<nz-table
-
-  *ngIf="customers$ | async as row"
->
+<nz-table #basicTable *ngIf="customers$ | async as row">
   <thead>
   <tr>
     <th>სახელი</th>

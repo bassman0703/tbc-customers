@@ -8,6 +8,8 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerComponent} from "ng-zorro-antd/divider";
 import {HeaderComponent} from "../header/header.component";
 import {NzPaginationComponent} from "ng-zorro-antd/pagination";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {AddOrEditCustomersComponent} from "./add-or-edit-customers/add-or-edit-customers.component";
 
 
 @Component({
@@ -23,8 +25,9 @@ import {NzPaginationComponent} from "ng-zorro-antd/pagination";
     NzDividerComponent,
     HeaderComponent,
     NzPaginationComponent,
-
+    AddOrEditCustomersComponent
   ],
+  providers:[NzModalService],
   styleUrl: 'customers.component.scss'
 })
 export class CustomersComponent {
@@ -35,10 +38,10 @@ export class CustomersComponent {
   page = 1
   pageSize = 10
   total = 0
-// constructor(
-//   private modal: NzModalService
-// ) {
-// }
+constructor(
+  private modal: NzModalService
+) {
+}
 
   customers$ = this.route.queryParams.pipe(
     map( (route) => {
@@ -72,17 +75,17 @@ export class CustomersComponent {
       queryParamsHandling: 'merge'
     }).then()
   }
-  // add() {
-  //   this.modal.create({
-  //     nzTitle: 'დამატება/რედაქტირება',
-  //     nzContent: AddOrEditCustomersComponent,
-  //     nzWidth: '750px',
-  //     nzData: {
-  //       view: false,
-  //     },
-  //     nzOnOk: () => {
-  //       // this.customers$()
-  //     }
-  //   });
-  // }
+  add() {
+    this.modal.create({
+      nzTitle: 'დამატება/რედაქტირება',
+      nzContent: AddOrEditCustomersComponent,
+      nzWidth: '750px',
+      nzData: {
+        view: false,
+      },
+      nzOnOk: () => {
+        // this.customers$()
+      }
+    });
+  }
 }

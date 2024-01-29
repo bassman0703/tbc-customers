@@ -1,4 +1,4 @@
-import {Dropdown} from "../interfaces/dropdown";
+import {Dropdown} from "../models/dropdown";
 
 export const genders: Dropdown[] = [
   {
