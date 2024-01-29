@@ -1,39 +1,27 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {Account, AccountRequest} from "../interfaces/account";
+import {BaseService} from "./base.service";
+import {PageOptions,Account} from "../models";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService {
-  url: string = "http://localhost:3000"
+export class AccountService extends BaseService {
 
-  constructor(private http: HttpClient) { }
-
-
-  getAccountList(request: AccountRequest): Observable<Account[]>  {
-    const {first, last, sortOrder, sortField, filter} = request
-    const page = (first/last) + 1;
-    let urlParams = `_page=${page}1&_limit=${last}`
-    if (sortField){
-      urlParams += `&_sort=${sortField}&_order=${sortOrder === 1 ?'asc' : 'desc'}`
-    }
-    if(filter && filter.clientNumber){
-      urlParams += `&clientNumber_like=${filter.clientNumber}`
-    }
-    return this.http.get<Account[]>(`${this.url}/accounts?${urlParams}`)
-  }
-  deleteAccount(accountId: number){
-    return this.http.delete( `http://localhost:3000/accounts/${accountId}` )
+  getAccounts(request: PageOptions): Observable<Account[]> {
+    return this.get<PageOptions, Account[]>(`accounts`, request)
   }
 
-  addEditAccount(postData: any, selectedAccount: any) {
-    if ( !selectedAccount){
-      return this.http.post(this.url, postData)
-    } else {
-      return this.http.put(`http://localhost:3000/users/${selectedAccount.id}`, postData)
-    }
+  deleteAccount(accountId: number) {
+    return this.delete(`accounts/${accountId}`)
+  }
+
+  create(postData: any): Observable<any> {
+    return this.http.post(`accounts`, postData)
+  }
+
+  update(id: number, params: any): Observable<any> {
+    return this.http.put(`accounts/${id}`, params)
   }
 
 }

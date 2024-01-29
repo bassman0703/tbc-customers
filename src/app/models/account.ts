@@ -7,13 +7,3 @@ export interface Account {
   accountType: string,
   accountStatus: string
 }
-
-export interface AccountRequest {
-  first: number,
-  last: number,
-  sortField: string | string []
-  sortOrder: number;
-  filter?: {
-    clientNumber: string
-  }
-}

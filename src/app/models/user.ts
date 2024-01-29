@@ -15,12 +15,4 @@ export interface User {
   img: string
 }
 
-export interface UserRequest {
-  first: number,
-  last: number,
-  sortField: string | string []
-  sortOrder: number;
-  filter?: {
-    clientNumber: string
-  }
-}
+

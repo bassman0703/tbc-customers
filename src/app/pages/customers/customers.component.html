@@ -1,11 +1,52 @@
-import {Component} from "@angular/core";
+<!--{{total}}-->
+<!--<br/>-->
+<!--{{customers$ | async | json}}-->
 
-@Component({
-  selector: 'app-customers',
-  standalone: true,
-  templateUrl: 'customers.component.html',
-  styleUrl: 'customers.component.scss'
-})
-export class CustomersComponent {
+<!--<button (click)="paginationChange(2)">2</button>-->
+<!--<button (click)="paginationChange(3)">3</button>-->
+<!--<button (click)="paginationChange(4)">4</button>-->
+<!--<button (click)="paginationChange(5)">5</button>-->
+<app-header></app-header>
+  <ng-template #header>
 
-}
+<!--    <button (click)="add()"  class="svg-icon"> დამატება</button>-->
+  </ng-template>
+<ng-template #footer>
+  <nz-pagination
+
+    (click)="paginationChange(page)"
+  ></nz-pagination>
+</ng-template>
+<nz-table
+
+  *ngIf="customers$ | async as row"
+>
+  <thead>
+  <tr>
+    <th>სახელი</th>
+    <th>გვარი</th>
+    <th>სქესი</th>
+    <th>პირადი ნომერი</th>
+    <th>მობილური</th>
+    <th>იურიდიული მისამართი</th>
+    <th>ფაქტიური მისამართი</th>
+    <th>ფოტოსურათი</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of row.data ">
+    <td>{{data.firsName}}</td>
+    <td>{{data.lastName}}</td>
+    <td>{{data.gender}}</td>
+    <td>{{data.personalNumber}}</td>
+    <td>{{data.phoneNumber}}</td>
+    <td>{{data.legalCountry}} {{','}} {{data.legalCity}} {{','}} {{data.legalAddress}}</td>
+    <td>{{data.actualCountry}} {{','}} {{data.actualCity}} {{','}} {{data.actualAddress}}</td>
+    <td>{{data.img}}</td>
+    <td>
+
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
