@@ -5,7 +5,7 @@ import {AccountsComponent} from "./pages/accounts/accounts.component";
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/customers',
+    redirectTo: '/accounts',
     pathMatch: 'full'
   },
   {

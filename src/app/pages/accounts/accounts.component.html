@@ -1,0 +1,42 @@
+{{total}}
+<br/>
+{{accounts$ | async | json}}
+
+<button (click)="paginationChange(2)">2</button>
+<button (click)="paginationChange(3)">3</button>
+<button (click)="paginationChange(4)">4</button>
+<button (click)="paginationChange(5)">5</button>
+<app-header></app-header>
+<tb-table-wrapper>
+  <button (click)="add()" >დამატება</button>
+  <ng-template #footer>
+    <tb-pagination
+      [page]="page"
+      [pageSize]="pageSize"
+      [total]="total"
+      (paginationChange)="paginationChange(page)"
+    ></tb-pagination>
+  </ng-template>
+  <nz-table *ngIf="accounts$ | async as row"
+            [nzFooter]="footer"
+  >
+    <thead>
+    <tr>
+      <th>ანგარიშის ნომერი</th>
+      <th>კლიენტის ნომერი</th>
+      <th>ანგარიშის ტიპი</th>
+      <th>ვალუტა</th>
+      <th>ანგარიშის სტატუსი</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of row.data ">
+
+      <td>
+
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</tb-table-wrapper>

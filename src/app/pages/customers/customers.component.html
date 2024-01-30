@@ -7,15 +7,19 @@
 <button (click)="paginationChange(4)">4</button>
 <button (click)="paginationChange(5)">5</button>
 <app-header></app-header>
+<tb-table-wrapper>
 <button (click)="add()" >დამატება</button>
-<ng-template>
-  <nz-pagination
-    [nzPageIndex]="page"
-    [nzTotal]="pageSize"
-    (click)="paginationChange(page)"
-  ></nz-pagination>
+<ng-template #footer>
+  <tb-pagination
+    [page]="page"
+    [pageSize]="pageSize"
+    [total]="total"
+    (paginationChange)="paginationChange(page)"
+  ></tb-pagination>
 </ng-template>
-<nz-table #basicTable *ngIf="customers$ | async as row">
+<nz-table *ngIf="customers$ | async as row"
+          [nzFooter]="footer"
+>
   <thead>
   <tr>
     <th>სახელი</th>
@@ -45,3 +49,4 @@
   </tr>
   </tbody>
 </nz-table>
+</tb-table-wrapper>

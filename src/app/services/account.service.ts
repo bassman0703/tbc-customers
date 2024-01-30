@@ -1,17 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {BaseService} from "./base.service";
-import {PageOptions,Account} from "../models";
+import {Account, PaginationResponse, User} from "../models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService extends BaseService {
 
-  getAccounts(request: PageOptions): Observable<Account[]> {
-    return this.get<PageOptions, Account[]>(`accounts`, request)
+  getAccounts(request: any): Observable<PaginationResponse<Account> >{
+    return this.get<any, PaginationResponse<Account>>(`accounts`, request)
   }
-
   deleteAccount(accountId: number) {
     return this.delete(`accounts/${accountId}`)
   }

@@ -7,7 +7,7 @@ import {PaginationResponse, User} from "../models";
   providedIn: 'root'
 })
 export class UserService extends BaseService{
-  getAccounts(request: any ): Observable<PaginationResponse<User>> {
+  getCustomers(request: any ): Observable<PaginationResponse<User>> {
     return this.get<any, PaginationResponse<User>>(`users`, request)
   }
 

@@ -10,6 +10,8 @@ import {HeaderComponent} from "../header/header.component";
 import {NzPaginationComponent} from "ng-zorro-antd/pagination";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {AddOrEditCustomersComponent} from "./add-or-edit-customers/add-or-edit-customers.component";
+import {PaginationModule} from "../../elements";
+import {TableWrapperComponent} from "../../shared/table-wrapper/table-wrapper.component";
 
 
 @Component({
@@ -25,7 +27,9 @@ import {AddOrEditCustomersComponent} from "./add-or-edit-customers/add-or-edit-c
     NzDividerComponent,
     HeaderComponent,
     NzPaginationComponent,
-    AddOrEditCustomersComponent
+    AddOrEditCustomersComponent,
+    PaginationModule,
+    TableWrapperComponent
   ],
   providers:[NzModalService],
   styleUrl: 'customers.component.scss'
@@ -53,7 +57,7 @@ constructor(
       }
     }),
     switchMap((params) => {
-      return this.customerService.getAccounts(pageOptions(params.page, params.pageSize)).pipe(
+      return this.customerService.getCustomers(pageOptions(params.page, params.pageSize)).pipe(
         tap(
           (res) => {
             this.total = res.items || 0;
@@ -81,7 +85,6 @@ constructor(
       nzContent: AddOrEditCustomersComponent,
       nzWidth: '750px',
       nzData: {
-        view: false,
       },
       nzOnOk: () => {
         // this.customers$()
