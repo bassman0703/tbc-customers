@@ -1,6 +1,6 @@
 import {Component, inject} from "@angular/core";
 import {ActivatedRoute, Router, RouterModule} from "@angular/router";
-import {filter, map, Observable, switchMap, tap} from "rxjs";
+import { map, switchMap, tap} from "rxjs";
 import {pageOptions, PaginationResponse, User} from "../../models";
 import {UserService} from "../../services";
 import {AsyncPipe, CommonModule, JsonPipe} from "@angular/common";
@@ -12,9 +12,8 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {AddOrEditCustomersComponent} from "./add-or-edit-customers/add-or-edit-customers.component";
 import {PaginationModule} from "../../elements";
 import {TableWrapperComponent} from "../../shared/table-wrapper/table-wrapper.component";
-import {log} from "ng-zorro-antd/core/logger";
 import {FormsModule} from "@angular/forms";
-import {NzInputDirective, NzInputModule} from "ng-zorro-antd/input";
+import { NzInputModule} from "ng-zorro-antd/input";
 
 
 @Component({
@@ -68,7 +67,7 @@ export class CustomersComponent {
         pageSize: this.pageSize,
         orderBy: this.orderBy,
         order: this.order,
-        firsName: route['firsName']
+        firstName: route['firstName']
       }
     }),
     switchMap((params) => {
@@ -106,10 +105,10 @@ export class CustomersComponent {
   filter(value: string) {
     console.log(value)
     if(value){
-      this.filterData = `firsName=${value}`
+      this.filterData = `firstName=${value}`
       this.router.navigate(['/customers'], {
         queryParams: {
-          firsName: value
+          firstName: value
         },
         queryParamsHandling: 'merge'
       }).then()

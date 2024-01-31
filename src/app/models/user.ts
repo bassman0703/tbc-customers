@@ -1,7 +1,7 @@
 export interface User {
   id: number,
   clientNumber: string,
-  firsName: string,
+  firstName: string,
   lastName: string,
   gender: string,
   personalNumber: number,

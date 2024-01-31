@@ -46,7 +46,7 @@ export class AddOrEditCustomersComponent implements OnInit{
   ) {
     this.form = this.fb.group({
       clientNumber: ["", Validators.required],
-      firsName: ["", Validators.required],
+      firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       gender: [""],
       personalNumber: ["", Validators.required],

@@ -30,7 +30,7 @@
   >
   <thead>
   <tr>
-    <th nzColumnKey="firsName" [nzSortFn]="true">სახელი</th>
+    <th nzColumnKey="firstName" [nzSortFn]="true">სახელი</th>
     <th nzColumnKey="lastName" [nzSortFn]="true" >გვარი</th>
     <th nzColumnKey="gender" [nzSortFn]="true" >სქესი</th>
     <th nzColumnKey="personalNumber" [nzSortFn]="true">პირადი ნომერი</th>
@@ -44,7 +44,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let data of customersTable.data ">
-    <td>{{data.firsName}}</td>
+    <td>{{data.firstName}}</td>
     <td>{{data.lastName}}</td>
     <td>{{data.gender}}</td>
     <td>{{data.personalNumber}}</td>
