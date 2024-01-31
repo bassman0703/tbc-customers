@@ -13,6 +13,7 @@ export interface User {
   actualCity: string,
   actualAddress: string
   img: string
+  createAt: Date
 }
 
 

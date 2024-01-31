@@ -61,7 +61,7 @@ export class AccountsComponent {
       }
     }),
     switchMap((params) => {
-      return this.accountService.getAccounts(pageOptions(params.page, params.pageSize)).pipe(
+      return this.accountService.getAccounts(pageOptions(params.page, params.pageSize , 'ASC', 'FirstName')).pipe(
         tap(
           (res) => {
             this.total = res.items || 0;

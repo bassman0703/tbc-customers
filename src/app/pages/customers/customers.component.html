@@ -2,39 +2,48 @@
 <!--<br/>-->
 <!--{{customers$ | async | json}}-->
 
-<button (click)="paginationChange(2)">2</button>
-<button (click)="paginationChange(3)">3</button>
-<button (click)="paginationChange(4)">4</button>
-<button (click)="paginationChange(5)">5</button>
+<!--<button (click)="paginationChange($event)">2</button>-->
+<!--<button (click)="paginationChange(3)">3</button>-->
+<!--<button (click)="paginationChange(4)">4</button>-->
+<!--<button (click)="paginationChange(5)">5</button>-->
+{{total}}
+
 <app-header></app-header>
 <tb-table-wrapper>
 <button (click)="add()" >დამატება</button>
-<ng-template #footer>
-  <tb-pagination
-    [page]="page"
-    [pageSize]="pageSize"
-    [total]="total"
-    (paginationChange)="paginationChange(page)"
-  ></tb-pagination>
-</ng-template>
-<nz-table *ngIf="customers$ | async as row"
-          [nzFooter]="footer"
->
+  <input
+    nz-input
+
+    [ngModel]="search"
+    (ngModelChange)="filter($event)"
+  />
+  <nz-table
+    #customersTable
+    [nzData]="(customers$ | async)?.data || []"
+    nzShowSizeChanger
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="page"
+    (nzQueryParams)="paginationChange($event)"
+
+  >
   <thead>
   <tr>
-    <th>სახელი</th>
-    <th>გვარი</th>
-    <th>სქესი</th>
-    <th>პირადი ნომერი</th>
-    <th>მობილური</th>
+    <th nzColumnKey="firsName" [nzSortFn]="true">სახელი</th>
+    <th nzColumnKey="lastName" [nzSortFn]="true" >გვარი</th>
+    <th nzColumnKey="gender" [nzSortFn]="true" >სქესი</th>
+    <th nzColumnKey="personalNumber" [nzSortFn]="true">პირადი ნომერი</th>
+    <th nzColumnKey="phoneNumber" [nzSortFn]="true">მობილური</th>
     <th>იურიდიული მისამართი</th>
     <th>ფაქტიური მისამართი</th>
     <th>ფოტოსურათი</th>
+    <th nzColumnKey="createAt" [nzSortFn]="true">შექმნის თარიღი</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of row.data ">
+  <tr *ngFor="let data of customersTable.data ">
     <td>{{data.firsName}}</td>
     <td>{{data.lastName}}</td>
     <td>{{data.gender}}</td>
@@ -43,6 +52,7 @@
     <td>{{data.legalCountry}} {{','}} {{data.legalCity}} {{','}} {{data.legalAddress}}</td>
     <td>{{data.actualCountry}} {{','}} {{data.actualCity}} {{','}} {{data.actualAddress}}</td>
     <td>{{data.img}}</td>
+    <td>{{data.createAt | date: 'dd/MM/YYYY HH:mm'}}</td>
     <td>
 
     </td>

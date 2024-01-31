@@ -1,6 +1,7 @@
-export const pageOptions = (page: number, pageSize: number) => ({
+export const pageOptions = (page: number, pageSize: number, order: 'ASC' | 'DESC', orderBy: string) => ({
   '_page': page,
-  '_per_page': pageSize
+  '_per_page': pageSize,
+  '_sort': order === 'DESC'? '-' : '' + orderBy,
 })
 
 

@@ -16,10 +16,10 @@ export class UserService extends BaseService{
   }
 
   create(postData: any): Observable<any> {
-    return this.http.post(`users`, postData)
+    return this.post(`users`, postData)
   }
 
   update(id: number, params: any): Observable<any> {
-    return this.http.put(`users/${id}`, params)
+    return this.put(`users/${id}`, params)
   }
 }

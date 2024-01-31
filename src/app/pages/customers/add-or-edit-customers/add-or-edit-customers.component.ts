@@ -76,7 +76,10 @@ export class AddOrEditCustomersComponent implements OnInit{
     } else {
       console.log(this.form.value)
       this.customersService
-        .create(this.form.value)
+        .create({
+          ...this.form.value,
+          createAt: new Date()
+        })
         .pipe(finalize(() => {
           this.isLoading = false;
         }))
